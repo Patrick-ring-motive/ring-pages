@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Wedding Memories</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 0.5em 0;
+      color: #555;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 0.5em 0 1.5em;
+      color: #777;
+    }
+    video {
+      border-radius:1vmin;
+    }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background: #000;
+      overflow: hidden;
+      border-radius:1vmin;
+    }
+
+    .video-wrapper iframe,
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius:1vmin;
+    }
+
+    .nav {
+      margin-top: 1.5em;
+    }
+
+    .nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #007bff;
+      font-size: 1.1em;
+    }
+
+    .nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Wedding Bells Ring</h1>
+    <p>Relive the beautiful moments of our special day.</p>
+
+    <div class="video-wrapper">
+      <!-- Replace with the actual video source or embed link -->
+      <video controls>
+        <source src="https://media.githubusercontent.com/media/Patrick-ring-motive/rings/refs/heads/main/w.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+   <!-- <div class="nav">
+      <a href="photos.html">View Photos</a>
+      <a href="contact.html">Get in Touch</a>
+    </div> -->
+  </div>
+
+</body>
+</html>
