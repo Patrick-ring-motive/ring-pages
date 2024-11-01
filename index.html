@@ -98,15 +98,21 @@
   </div>
 <div class="img-container"></div>
   <script>
-   
+   void async function Main(){
     const imgContainer = document.querySelector('.img-container');
     for(let i = 1136; i <= 1198;i++){
       const img = document.createElement('img');
-      img.src = `https://raw.githubusercontent.com/Patrick-ring-motive/rings-img/refs/heads/main/DSC_${i}.png`;
+      img.src = `/DSC_${i}.png`;
       img.style.width = '100%';
       img.style.height = 'auto';
+      const done = new Promise((resolve) => {
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(img.style.display = 'none');
+      })
       imgContainer.appendChild(img);
+      await done;
     }
+   }();
   </script>
 </body>
 
