@@ -98,6 +98,31 @@
   </div>
 <div class="img-container"></div>
   <script>
+    (globalThis.window??{}).DOMComplete = (fn) => {
+           fn??=()=>{};
+           if (document.readyState == 'complete') {
+               return fn();
+           }
+    return new Promise((resolve) => {
+       let resolved = false;
+       globalThis?.document?.addEventListener?.("load", ()=>{
+        if(!resolved){try{resolve(fn());}catch(e){resolve(e);}finally{resolved = true;}}
+       });
+       globalThis?.addEventListener?.("load", ()=>{
+        if(!resolved){try{resolve(fn());}catch(e){resolve(e);}finally{resolved = true;}}
+       });
+      const intID = setInterval(()=>{
+        if (document.readyState == 'complete') {
+          if(!resolved){try{resolve(fn());}catch(e){resolve(e);}finally{resolved = true;}}
+          clearIntID();
+        }
+      },100);
+      function clearIntID(){
+        clearInterval(intID);
+      }
+     });
+       }
+    
     globalThis.queueMicrotask ??= setTimeout;
     globalThis.requestAnimationFrame ??= setTimeout;
     globalThis.requestIdleCallback ??= globalThis.requestAnimationFrame;
@@ -111,9 +136,15 @@
       return new Promise((resolve) => {queueMicrotask(resolve);});  
     }
 
+    globalThis.sleep = (ms) => {
+         return new Promise((resolve) => {
+             setTimeout(resolve, ms);
+         });
+     };
     
    void async function Main(){
-    const imgContainer = document.querySelector('.img-container');
+     await DOMComeplete();
+     const imgContainer = document.querySelector('.img-container');
     for(let i = 1136; i <= 1198;i++){
       const img = document.createElement('img');
       img.src = `/DSC_${i}.png`;
@@ -125,6 +156,7 @@
       })
       imgContainer.appendChild(img);
       await done;
+      await sleep(100);
       await nextFrame();
     }
    }();
