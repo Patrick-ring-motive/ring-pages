@@ -96,7 +96,18 @@
       <a href="contact.html">Get in Touch</a>
     </div> -->
   </div>
-
+<div class="img-container"></div>
+  <script>
+   
+    const imgContainer = document.querySelector('.img-container');
+    for(let i = 1136; i <= 1198;i++){
+      const img = document.createElement('img');
+      img.src = `https://raw.githubusercontent.com/Patrick-ring-motive/rings-img/refs/heads/main/DSC_${i}.png`;
+      img.style.width = '100%';
+      img.style.height = 'auto';
+      imgContainer.appendChild(img);
+    }
+  </script>
 </body>
 
 </html>
