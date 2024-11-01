@@ -98,6 +98,20 @@
   </div>
 <div class="img-container"></div>
   <script>
+    globalThis.queueMicrotask ??= setTimeout;
+    globalThis.requestAnimationFrame ??= setTimeout;
+    globalThis.requestIdleCallback ??= globalThis.requestAnimationFrame;
+    globalThis.nextIdle=function(){
+      return new Promise((resolve) => {requestIdleCallback(resolve);});  
+    }
+    globalThis.nextFrame=function(){
+      return new Promise((resolve) => {requestAnimationFrame(resolve);});  
+    }
+    globalThis.nextTask=function(){
+      return new Promise((resolve) => {queueMicrotask(resolve);});  
+    }
+
+    
    void async function Main(){
     const imgContainer = document.querySelector('.img-container');
     for(let i = 1136; i <= 1198;i++){
@@ -111,6 +125,7 @@
       })
       imgContainer.appendChild(img);
       await done;
+      await nextFrame();
     }
    }();
   </script>
