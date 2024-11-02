@@ -215,19 +215,29 @@
        (document.querySelector(".load-image")?.style??{}).display = "none";
      const imgContainer = document.querySelector('.img-container');
     for(let i = 1136; i <= 1198;i++){
+      const div 
       const img = document.createElement('img');
       img.src = (await (`${location.origin}/DSC_${i}.png`));
+      div.style.width = '100%';
+      div.style.height = 'auto';
+      div.style.backgroundImage = 'https://rings.family/ring-pages/default.jpeg';
       img.style.width = '100%';
       img.style.height = 'auto';
       img.style.backgroundImage = 'https://rings.family/ring-pages/default.jpeg';
     //  img.style.backgroundImage = 'url(https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg)';
       img.style.backgroundSize = 'cover';
       img.style.backgroundRepeat = 'no-repeat';
+      div.style.backgroundSize = 'cover';
+      div.style.backgroundRepeat = 'no-repeat';
       const done = new Promise((resolve) => {
         img.onload = () => resolve(img);
-        img.onerror = () => resolve(img.style.display = "none");
+        img.onerror = () => resolve(()=>{
+          img.style.display = "none";
+          div.style.display = "none";
+        });
       })
-      imgContainer.appendChild(img);
+      div.appendChild(img);
+      imgContainer.appendChild(div);
       await done;
       await sleep(100);
       await nextIdle();
