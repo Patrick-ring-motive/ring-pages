@@ -216,7 +216,7 @@
      const imgContainer = document.querySelector('.img-container');
     for(let i = 1136; i <= 1198;i++){
       const img = document.createElement('img');
-      img.src = (await blobURL(`${location.origin}/DSC_${i}.png`));
+      img.src = (await (`${location.origin}/DSC_${i}.png`));
       img.style.width = '100%';
       img.style.height = 'auto';
       const done = new Promise((resolve) => {
