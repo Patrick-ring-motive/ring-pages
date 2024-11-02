@@ -222,7 +222,7 @@
           const div = document.createElement('a');
           const img = document.createElement('img');
           img.src = (await (`${location.origin}/DSC_${i}.webp`));
-          div.href = img.src;
+          div.href = img.src.replace('.webp', '.png');
           div.setAttribute('target', '_blank');
           div.style.width = '100%';
           div.style.height = 'auto';
