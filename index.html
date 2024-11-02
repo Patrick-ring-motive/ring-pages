@@ -220,6 +220,8 @@
       img.style.width = '100%';
       img.style.height = 'auto';
       img.style.backgroundImage = 'url(https://cdn.britannica.com/18/137318-050-29F7072E/rooster-Rhode-Island-Red-roosters-chicken-domestication.jpg)';
+      img.style.backgroundSize = 'cover';
+      img.style.backgroundRepeat = 'no-repeat';
       const done = new Promise((resolve) => {
         img.onload = () => resolve(img);
         img.onerror = () => resolve(img);
