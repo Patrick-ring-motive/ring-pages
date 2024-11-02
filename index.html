@@ -155,16 +155,58 @@
              setTimeout(resolve, ms);
          });
      };
+
+    const toStream = function toStream(iter) {
+       return new ReadableStream({
+        pull : async function pull(controller) {
+          try{
+          await sleep(1);
+          const chunk = await iter?.next?.();
+          if (chunk) {
+            controller.enqueue(chunk.value);
+          }
+          if (chunk?.done ?? !chunk) {
+            controller.close();
+          }
+        }catch(e){
+          console.warn(e,...arguments);
+         try{controller.close();}catch{}
+        }
+      }
+       });
+    }
+
+    const zfetch = async function zfetch(){
+      let res;
+      try{
+        res = await fetch(...arguments);
+      }catch(e){
+        console.warn(e,...arguments);
+        res = new Response(e.message,{status:500,statusText:"Internal Server Error"});
+                   }
+     res = new Response(toStream(res.body),res);
+      return res;
+    }
+
+    async function blobURL(url){
+      let res = await zfetch(url);
+      return URL.createObjectURL((await res.blob())
+      , { type: "image/png"" });
+    }
+
+    
     
    void async function Main(){
      await DOMComplete();
      
      (document.querySelector(".load-image")??{}).onclick = async function(){
+       
+       
        (document.querySelector(".load-image")?.style??{}).display = "none";
      const imgContainer = document.querySelector('.img-container');
     for(let i = 1136; i <= 1198;i++){
       const img = document.createElement('img');
-      img.src = `/DSC_${i}.png`;
+      img.src = await blobURL(`${location.origin}/DSC_${i}.png`);
       img.style.width = '100%';
       img.style.height = 'auto';
       const done = new Promise((resolve) => {
