@@ -80,6 +80,13 @@
     .img-container{
       border-witdh: 0px;
     }
+
+    .load-image{
+      text-decoration: none;
+      background-color: #007bff;
+      border-radius: 1vmin;
+      padding: 1vmax;;
+    }
   </style>
 </head>
 
@@ -101,7 +108,9 @@
       <a href="contact.html">Get in Touch</a>
     </div> -->
   </div>
-<div class="img-container"></div>
+<div class="img-container">
+<a href="#" class="load-image">Pictures</a>
+</div>
   <script>
     (globalThis.window??{}).DOMComplete = (fn) => {
            fn??=()=>{};
@@ -149,6 +158,9 @@
     
    void async function Main(){
      await DOMComplete();
+     
+     (document.querySelector(".load-image")??{}).onclick = async function(){
+       (document.querySelector(".load-image")?.style??{}).display = "none";
      const imgContainer = document.querySelector('.img-container');
     for(let i = 1136; i <= 1198;i++){
       const img = document.createElement('img');
@@ -165,6 +177,7 @@
       await nextIdle();
       await nextFrame();
     }
+     }
    }();
   </script>
 </body>
