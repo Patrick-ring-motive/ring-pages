@@ -158,6 +158,7 @@
       imgContainer.appendChild(img);
       await done;
       await sleep(100);
+      await nextIdle();
       await nextFrame();
     }
    }();
