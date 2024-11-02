@@ -231,10 +231,10 @@
       div.style.backgroundRepeat = 'no-repeat';
       const done = new Promise((resolve) => {
         img.onload = () => resolve(img);
-        img.onerror = () => resolve(()=>{
+        img.onerror = () => resolve((()=>{
           img.style.display = "none";
           div.style.display = "none";
-        });
+        })());
       })
       div.appendChild(img);
       imgContainer.appendChild(div);
