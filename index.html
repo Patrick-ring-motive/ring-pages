@@ -220,7 +220,7 @@
       img.style.height = 'auto';
       const done = new Promise((resolve) => {
         img.onload = () => resolve(img);
-        img.onerror = () => resolve(img.style.display = 'none');
+        img.onerror = (e) => resolve(img.outerHTML = e.message);
       })
       imgContainer.appendChild(img);
       await done;
