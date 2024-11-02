@@ -184,7 +184,7 @@
         console.warn(e,...arguments);
         res = new Response(e.message,{status:500,statusText:"Internal Server Error"});
                    }
-     res = new Response(toStream(res.body),res);
+     res = new Response(toStream(res?.body?.[Symbol.asyncIterator]?.()),res);
       return res;
     }
     async function zblob(res){
