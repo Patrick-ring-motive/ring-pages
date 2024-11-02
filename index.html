@@ -192,7 +192,7 @@
       try{
         blob = await res.blob();
       }catch(e){
-        return await new Response(e.message).blob();
+        return await ((new Response(e.message)).blob());
       }
       return blob;
     }
@@ -215,7 +215,7 @@
      const imgContainer = document.querySelector('.img-container');
     for(let i = 1136; i <= 1198;i++){
       const img = document.createElement('div');
-      img.style.backgroundImage = `${(await blobURL(`${location.origin}/DSC_${i}.png`))})`;
+      img.style.backgroundImage = `url(${(await blobURL(`${location.origin}/DSC_${i}.png`))})`;
       img.style.width = '100%';
       img.style.height = 'auto';
       const done = new Promise((resolve) => {
