@@ -162,7 +162,7 @@
         pull : async function pull(controller) {
           try{
           await sleep(1);
-          const chunk = await reaader?.read?.();
+          const chunk = await reader?.read?.();
           if (chunk) {
             controller.enqueue(chunk.value);
           }
