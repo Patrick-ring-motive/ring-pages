@@ -200,7 +200,7 @@
 
     async function blobURL(url){
       let res = await zfetch(url);
-      return URL.createObjectURL(new Blob(await (await zblob(res))?.arrayBuffer?.()??[]
+      return URL.createObjectURL(new Blob((await (await zblob(res))?.arrayBuffer?.())??[]
       , { type: "image/png"}));
     }
 
