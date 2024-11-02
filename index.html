@@ -220,7 +220,7 @@
       img.style.height = 'auto';
       const done = new Promise((resolve) => {
         img.onload = () => resolve(img);
-        img.onerror = (e) => resolve(img.outerHTML = e.message);
+        img.onerror = (e) => resolve(img.outerHTML = `<a href="${location.origin}/DSC_${i}.png" target="_blank">${e.message}</a>`);
       })
       imgContainer.appendChild(img);
       await done;
