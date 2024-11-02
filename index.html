@@ -215,7 +215,7 @@
        (document.querySelector(".load-image")?.style??{}).display = "none";
      const imgContainer = document.querySelector('.img-container');
     for(let i = 1136; i <= 1198;i++){
-      const div 
+      const div = document.createElement('div');
       const img = document.createElement('img');
       img.src = (await (`${location.origin}/DSC_${i}.png`));
       div.style.width = '100%';
@@ -235,7 +235,7 @@
           img.style.display = "none";
           div.style.display = "none";
         })());
-      })
+      });
       div.appendChild(img);
       imgContainer.appendChild(div);
       await done;
