@@ -225,7 +225,7 @@
       img.style.backgroundRepeat = 'no-repeat';
       const done = new Promise((resolve) => {
         img.onload = () => resolve(img);
-        img.onerror = () => resolve(img);
+        img.onerror = () => resolve(img.style.display = "none");
       })
       imgContainer.appendChild(img);
       await done;
