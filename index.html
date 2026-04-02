@@ -90,12 +90,12 @@
       opacity: 0.8;
       margin: 5vmin;
     }
+
   </style>
 </head>
 
 <body style="background: white;">
-  <img src="https://rings.family/ring-pages/h.jpg"
-    style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; opacity:0.5;" />
+  <img src="https://rings.family/ring-pages/h.jpg" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; opacity:0.5;" />
   <div class="container">
     <h1>Wedding Bells Ring</h1>
     <p>Relive the beautiful moments of our special day.</p>
@@ -117,24 +117,49 @@
   </div>
   <script>
     (globalThis.window ?? {}).DOMComplete = (fn) => {
-      fn ??= () => { };
+      fn ??= () => {};
       if (document.readyState == 'complete') {
         return fn();
       }
       return new Promise((resolve) => {
         let resolved = false;
         globalThis?.document?.addEventListener?.("load", () => {
-          if (!resolved) {try {resolve(fn());} catch (e) {resolve(e);} finally {resolved = true;} }
+          if (!resolved) {
+            try {
+              resolve(fn());
+            } catch (e) {
+              resolve(e);
+            } finally {
+              resolved = true;
+            }
+          }
         });
         globalThis?.addEventListener?.("load", () => {
-          if (!resolved) {try {resolve(fn());} catch (e) {resolve(e);} finally {resolved = true;} }
+          if (!resolved) {
+            try {
+              resolve(fn());
+            } catch (e) {
+              resolve(e);
+            } finally {
+              resolved = true;
+            }
+          }
         });
         const intID = setInterval(() => {
           if (document.readyState == 'complete') {
-            if (!resolved) {try {resolve(fn());} catch (e) {resolve(e);} finally {resolved = true;} }
+            if (!resolved) {
+              try {
+                resolve(fn());
+              } catch (e) {
+                resolve(e);
+              } finally {
+                resolved = true;
+              }
+            }
             clearIntID();
           }
         }, 100);
+
         function clearIntID() {
           clearInterval(intID);
         }
@@ -144,14 +169,20 @@
     globalThis.queueMicrotask ??= setTimeout;
     globalThis.requestAnimationFrame ??= setTimeout;
     globalThis.requestIdleCallback ??= globalThis.requestAnimationFrame;
-    globalThis.nextIdle = function () {
-      return new Promise((resolve) => {requestIdleCallback(resolve);});
+    globalThis.nextIdle = function() {
+      return new Promise((resolve) => {
+        requestIdleCallback(resolve);
+      });
     }
-    globalThis.nextFrame = function () {
-      return new Promise((resolve) => {requestAnimationFrame(resolve);});
+    globalThis.nextFrame = function() {
+      return new Promise((resolve) => {
+        requestAnimationFrame(resolve);
+      });
     }
-    globalThis.nextTask = function () {
-      return new Promise((resolve) => {queueMicrotask(resolve);});
+    globalThis.nextTask = function() {
+      return new Promise((resolve) => {
+        queueMicrotask(resolve);
+      });
     }
 
     globalThis.sleep = (ms) => {
@@ -175,7 +206,9 @@
             }
           } catch (e) {
             console.warn(e, ...arguments);
-            try {controller.close();} catch { }
+            try {
+              controller.close();
+            } catch {}
           }
         }
       });
@@ -187,7 +220,10 @@
         res = await fetch(...arguments);
       } catch (e) {
         console.warn(e, ...arguments);
-        res = new Response(e.message, {status: 500, statusText: "Internal Server Error"});
+        res = new Response(e.message, {
+          status: 500,
+          statusText: "Internal Server Error"
+        });
       }
       res = new Response(toStream(res?.body), res);
       return res;
@@ -204,17 +240,15 @@
 
     async function blobURL(url) {
       let res = await zfetch(url);
-      return URL.createObjectURL(new Blob((await (await zblob(res))?.arrayBuffer?.()) ?? []
-        , {type: "image/png"}));
+      return URL.createObjectURL(new Blob((await (await zblob(res))?.arrayBuffer?.()) ?? [], {
+        type: "image/png"
+      }));
     }
-
-
 
     void async function Main() {
       await DOMComplete();
 
-      (document.querySelector(".load-image") ?? {}).onclick = async function () {
-
+      (document.querySelector(".load-image") ?? {}).onclick = async function() {
 
         (document.querySelector(".load-image")?.style ?? {}).display = "none";
         const imgContainer = document.querySelector('.img-container');
@@ -251,6 +285,7 @@
         }
       }
     }();
+
   </script>
 </body>
 
